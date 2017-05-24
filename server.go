@@ -8,12 +8,15 @@ import (
 
 func main() {
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
+
+	e.Static("/", "view/")
+	e.Static("More1", "doityourself.jpg")
+	e.GET("More2", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
-	e.Static("/", "view/")
-	e.Static("More1", "avatar.png")
-	e.Static("More2", "avatar.png")
+	e.GET("More3", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Hello, World!")
+	})
 	e.Logger.Fatal(e.Start(":1323"))
-
+	
 }
