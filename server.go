@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bufio"
+	"log"
+	"mime"
 	"net/http"
-
+	"os"
 	"github.com/labstack/echo"
 )
 
@@ -11,15 +14,27 @@ func getUser(c echo.Context) error {
 	id := c.Param("id")
 	return c.String(http.StatusOK, id)
 }
+func SendPic(c echo.Context) error {
+	imgFile, err := os.Open("doityourself.jpg")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer imgFile.Close()
+	fInfo, _ := imgFile.Stat()
+	var size int64 = fInfo.Size()
+	buf := make([]byte, size)
+	fReader := bufio.NewReader(imgFile)
+	fReader.Read(buf)
+	avatar := []byte(buf)
+	return c.Blob(http.StatusOK, mime.TypeByExtension(".jpg"), avatar)
+}
 
 func main() {
 	e := echo.New()
 
 	e.Static("/", "view/")
-	e.Static("More1", "doityourself.jpg")
-	e.GET("More2", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
+	e.GET("More1", SendPic)
+	e.Static("More2", "doityourself.jpg")
 	e.GET("More3", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
