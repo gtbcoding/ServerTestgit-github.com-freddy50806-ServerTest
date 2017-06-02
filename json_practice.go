@@ -36,7 +36,13 @@ func GetJson(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, u)
 }
-
+func Prettyprint(c echo.Context) error {
+	u := &User{
+		Name:  "Jon",
+		Email: "joe@labstack.com",
+	}
+	return c.JSONPretty(http.StatusOK, u, "  ")
+}
 func StreamJson(c echo.Context) error {
 	u := &User{
 		Name:  "Jon",
