@@ -31,10 +31,13 @@ func SendPic(c echo.Context) error {
 }
 
 func SendMusic(c echo.Context) error {
-	return c.File("sock.jpg")
+	return c.File("/home/qeek/Desktop/Git/GO1.8/src/ServerTest/Good Dog.mp4")
 }
 func AttachmentFile(c echo.Context) error {
-	return c.Attachment("sock.jpg", "sockGG.jpg")
+	return c.Attachment("/home/qeek/Desktop/Git/GO1.8/src/ServerTest/Good Dog.mp4", "Sample123.mp3")
+}
+func RedirectURL(c echo.Context) error {
+	return c.Redirect(http.StatusMovedPermanently, "More3")
 }
 func main() {
 	e := echo.New()
@@ -58,6 +61,9 @@ func main() {
 	//Sendfile
 	e.GET("/SendMusic", SendMusic)
 	e.GET("/SendFile", AttachmentFile)
+
+	//RedirectURL
+	e.GET("/RedirectURL", RedirectURL)
 	e.Logger.Fatal(e.Start(":1323"))
 
 }
