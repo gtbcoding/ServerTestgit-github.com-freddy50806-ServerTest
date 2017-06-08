@@ -8,7 +8,11 @@ import (
 	"os"
 
 	"github.com/labstack/echo"
+
+	_ "github.com/go-sql-driver/mysql"
 )
+
+//	"ServerTest/trysql"
 
 func getUser(c echo.Context) error {
 	// User ID from path `users/:id`
@@ -61,9 +65,16 @@ func main() {
 	//Sendfile
 	e.GET("/SendMusic", SendMusic)
 	e.GET("/SendFile", AttachmentFile)
-
+	/*
+		db, err := sql.Open("mysql", "user:password@tcp(127.0.0.1:3306)/hello")
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("%T\n", db)
+		defer db.Close()
+	*/
 	//RedirectURL
 	e.GET("/RedirectURL", RedirectURL)
 	e.Logger.Fatal(e.Start(":1323"))
-
+	//trysql.Sqltest()
 }
