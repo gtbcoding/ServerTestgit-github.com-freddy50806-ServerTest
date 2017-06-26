@@ -1,6 +1,12 @@
-hash: 7ba68d6d8297672d366ed96e96d844beeb3886e0704ccc1731798647c26360b6
-updated: 2017-05-25T15:01:51.580773058+08:00
+hash: b7915ae832d18edb08e77c4af099e586f272b12ab389d82dfd00877264edbbd2
+updated: 2017-06-12T17:05:02.121687287+08:00
 imports:
+- name: github.com/go-sql-driver/mysql
+  version: a825be04c652d01442384e9dcdf2cdc3f1eda67f
+- name: github.com/jinzhu/gorm
+  version: 5174cc5c242a728b435ea2be8a2f7f998e15429b
+  subpackages:
+  - dialects/sqlite
 - name: github.com/labstack/echo
   version: 1049c9613cd371b7ea8f219404c9a821734781ed
 - name: github.com/labstack/gommon
@@ -12,6 +18,8 @@ imports:
   version: ded68f7a9561c023e790de24279db7ebf473ea80
 - name: github.com/mattn/go-isatty
   version: fc9e8d8ef48496124e79ae0df75490096eccf6fe
+- name: github.com/mattn/go-sqlite3
+  version: 83772a7051f5e30d8e59746a9e43dfa706b72f3b
 - name: github.com/valyala/bytebufferpool
   version: e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7
 - name: github.com/valyala/fasttemplate
@@ -21,6 +29,10 @@ imports:
   subpackages:
   - acme
   - acme/autocert
+- name: golang.org/x/net
+  version: 1a68b1313cf4ad7778376e82641197b60c02f65c
+  subpackages:
+  - context
 - name: golang.org/x/sys
   version: a55a76086885b80f79961eacb876ebd8caf3868d
   subpackages:

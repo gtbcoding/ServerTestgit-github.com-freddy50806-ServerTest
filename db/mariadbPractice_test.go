@@ -1,40 +1,32 @@
 package db
-import{
-	"testing"
-}
-func Test_Open_mariaDB() *sql.DB {
-	db, err := sql.Open("mysql", "root:qeek1688@tcp(127.0.0.1:3306)/userdb")
+
+import "testing"
+import "fmt"
+
+func Test_mariaDB(t *testing.T) {
+
+	//test 1
+	db, err := Open_mariaDB()
 	if err != nil {
-		log.Fatal(err)
+		t.Error("fail to open db")
+	} else {
+		t.Log("Open_mariaDB success")
 	}
-	return db
-}
-func Test_Close_mariaDB(db *sql.DB) {
-	defer db.Close()
-}
-func Test_DB_connect(db *sql.DB) {
-	err := db.Ping()
+	//test 2
+	err = DB_connect(db)
 	if err != nil {
-		println("Fail to connect")
+		t.Error("DB_connect failed")
+	} else {
+		t.Log("DB_connect success")
 	}
-}
-func Test_Fetch_data_by_name(db *sql.DB, name string) {
-	var u User
-	rows, err := db.Query("SELECT * FROM users WHERE Username=?", name)
-	if err != nil {
-		log.Fatal(err)
+	//test 3
+	user1, err := Fetch_data_by_name(db, "freddy")
+	fmt.Println(user1)
+
+	if user1 == nil {
+		t.Error("Fetch_data_by_name fialed")
+	} else {
+		t.Log("Fetch_data_by_name success")
 	}
 
-	for rows.Next() {
-		err := rows.Scan(u.Username, u.email, u.age)
-		if err != nil {
-			log.Fatal(err)
-		}
-		log.Println(u)
-	}
-
-	err = rows.Err()
-	if err != nil {
-		log.Fatal(err)
-	}
 }
