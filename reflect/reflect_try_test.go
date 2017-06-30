@@ -37,11 +37,11 @@ type outputdata struct {
 
 func Test_StructBind(t *testing.T) {
 	gary := User{777, "Gary", "gogo@qnap.com"}
-	//commander := Game1{2131, 9, "Avatar_gary", 6, 7, 4}
+	// commander := Game1{2131, 9, "Avatar_gary", 6, 7, 4}
 	//gary_data := outputdata{}
 	//err := StructBind(gary, commander, gary_data)
-	fmt.Printf("User StructTag=%T\n", gary)
-	println("User typeOf=", reflect.TypeOf(gary))
+	// fmt.Printf("User StructTag=%T\n", gary)
+	// println("User typeOf=", reflect.TypeOf(gary))
 	/*
 		if err == true {
 			t.Log("Binding success")
@@ -63,11 +63,19 @@ func Test_StructBind(t *testing.T) {
 	// fmt.Printf("GG=%s\n", reflect.TypeOf(gary).Kind().String())
 	// println("G2", reflect.TypeOf(gary).Kind().String())
 	s := reflect.ValueOf(gary)
-	typeOfT := s.Type()
+	// typeOfT := s.Type()
 
 	for i := 0; i < s.NumField(); i++ {
-		f := s.Field(i)
-		fmt.Printf("%d: %s %s = %v\n", i,
-			typeOfT.Field(i).Name, f.Type(), f.Interface())
+		// f := s.Field(i)
+		// fmt.Printf("%d: %s %s = %v\n", i,
+		// 	typeOfT.Field(i).Name, f.Type(), f.Interface())
+		// println(reflect.ValueOf(commander).FieldByName(typeOfT.Field(i).Name))
+		//fmt.Println(reflect.ValueOf(commander).FieldByName(typeOfT.Field(i).Name))
+		// FieldByName(typeOfT.Field(i).Name).Kind())
+		// fmt.Println(reflect.TypeOf(3))
 	}
+	fmt.Println(reflect.TypeOf(3))
+	fmt.Println(reflect.ValueOf(3))
+	fmt.Println(reflect.TypeOf(gary))
+	fmt.Println(reflect.ValueOf(gary))
 }
